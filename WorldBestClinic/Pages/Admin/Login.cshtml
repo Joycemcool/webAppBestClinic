@@ -1,0 +1,29 @@
+﻿@page
+@model WorldBestClinic.Pages.Admin.LoginModel
+@{
+}
+
+<h1>Login</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="admin" class="control-label"></label>
+                <input asp-for="admin" class="form-control" />
+                <span asp-validation-for="admin" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" type="password" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

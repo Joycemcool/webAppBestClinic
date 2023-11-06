@@ -1,0 +1,60 @@
+﻿@page
+@model WorldBestClinic.Pages.Services.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    string imagePath = "/ServicePhotos/" + Model.Service.FileName;
+
+}
+
+<h1>Edit Service</h1>
+
+<hr />
+
+<br />
+
+<h4>Service</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <img src="@imagePath" class="img-fluid" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Service.FileName" class="form-control" />
+            <input type="hidden" asp-for="Service.ServiceId" />
+
+            <div class="mb-3">
+                <label for="ImageUpload">Upload New Service Picture</label>
+                <input type="file" asp-for="ImageUpload" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Service.FileName" class="control-label"></label>
+                <input asp-for="Service.FileName" class="form-control" />
+                <span asp-validation-for="Service.FileName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Service.Description" class="control-label"></label>
+                <input asp-for="Service.Description" class="form-control" />
+                <span asp-validation-for="Service.Description" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-page="./Index" class="btn btn-outline-dark">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

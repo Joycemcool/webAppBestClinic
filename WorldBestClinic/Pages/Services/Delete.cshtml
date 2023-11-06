@@ -1,0 +1,47 @@
+﻿@page
+@model WorldBestClinic.Pages.Services.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    string imagePath = "/ServicePhotos/" + Model.Service.FileName;
+}
+
+<h1>Delete Service</h1>
+
+<hr />
+
+<br />
+
+<h3>Are you sure you want to delete this?</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <img src="@imagePath" class="img-fluid" />
+    </div>
+</div>
+
+<div>
+    <h4>Service</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Service.FileName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Service.FileName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Service.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Service.Description)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Service.ServiceId" />
+        <input type="submit" value="Delete" class="btn btn-danger"  /> |
+        <a asp-page="./Index" class="btn btn-outline-dark">Cancel</a>
+    </form>
+
+</div>

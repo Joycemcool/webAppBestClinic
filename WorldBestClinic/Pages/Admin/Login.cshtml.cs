@@ -21,26 +21,30 @@ namespace WorldBestClinic.Pages.Admin
         public async Task<IActionResult> OnPostAsync()
         {
             //
+            //Check if null value in required fields
+            //
+
+            if (!ModelState.IsValid || admin == null || password == null)
+            {
+                return Page();
+            }
+
+            //
             //Validate admin and password
             //
-            if (admin == null || admin != "admin")
+            if ( admin != "admin" || password != "password")
             {
                 ModelState.AddModelError("User", "Admin not found");
 
                 return Page();
             }
 
-            else if (password == null || password != "password")
-            {
-                ModelState.AddModelError("Password", "Not a valid password");
 
-                return Page();
-            }
 
             // Setup session
             var claims = new List<Claim>
             {
-                //new Claim(ClaimTypes.Name, dbUser.UserId.ToString()),
+                new Claim(ClaimTypes.Name, admin),
                 new Claim("FullName", admin),
                 new Claim(ClaimTypes.Role, "User")
             };

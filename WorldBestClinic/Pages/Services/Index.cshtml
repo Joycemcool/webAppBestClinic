@@ -30,8 +30,8 @@
             string imagePath = "/ServicePhotos/" + item.FileName;
         <tr>
             <td>
-                    <img src="@imagePath" class="img-fluid thumbnail">
-                </td>
+                    <img src="@imagePath" class="img-fluid img-thumbnail" style="max-width: 100%; height: auto;">
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FileName)
             </td>

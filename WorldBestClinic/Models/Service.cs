@@ -7,12 +7,22 @@ namespace WorldBestClinic.Models
     {
         public int ServiceId { get; set; }
 
+        public int Price { get; set; } = 0;
+
         [DisplayName("Service Name")]
+        public string ServiceName { get; set; } = string.Empty;
+
+
+        [DisplayName("Service Photo")]
         public string FileName { get; set; } = string.Empty;
 
         public string Description { get; set; } = string.Empty;
 
+        public bool IsLab { get; set; }
+
+
         //public Category Category { get; set; } = new();
+
 
     }
 }

@@ -17,12 +17,20 @@
                 @Html.DisplayNameFor(model => model.Service[0].FileName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Service[0].FileName)
+                @Html.DisplayNameFor(model => model.Service[0].ServiceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service[0].Price)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Service[0].Description)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service[0].IsLab)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service[0].FileName)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -30,14 +38,24 @@
             string imagePath = "/ServicePhotos/" + item.FileName;
         <tr>
             <td>
-                    <img src="@imagePath" class="img-fluid img-thumbnail" style="max-width: 100%; height: auto;">
+                    <img src="@imagePath" class="img-fluid thumbnail">
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FileName)
+                @Html.DisplayFor(modelItem => item.ServiceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsLab)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ServiceId">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ServiceId">Details</a> |

@@ -20,3 +20,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+thumbnail {
+    width: 250px;
+    height:auto;
+}

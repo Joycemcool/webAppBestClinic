@@ -35,6 +35,18 @@
             </div>
 
             <div class="mb-3">
+                <label asp-for="Service.ServiceName" class="control-label"></label>
+                <input asp-for="Service.ServiceName" class="form-control" />
+                <span asp-validation-for="Service.ServiceName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Service.Price" class="control-label"></label>
+                <input asp-for="Service.Price" class="form-control" />
+                <span asp-validation-for="Service.Price" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
                 <label asp-for="Service.FileName" class="control-label"></label>
                 <input asp-for="Service.FileName" class="form-control" />
                 <span asp-validation-for="Service.FileName" class="text-danger"></span>
@@ -44,6 +56,12 @@
                 <label asp-for="Service.Description" class="control-label"></label>
                 <input asp-for="Service.Description" class="form-control" />
                 <span asp-validation-for="Service.Description" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Service.IsLab" class="control-label"></label>
+                <input asp-for="Service.IsLab" class="form-control" />
+                <span asp-validation-for="Service.IsLab" class="text-danger"></span>
             </div>
 
             <div class="mb-3">

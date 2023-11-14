@@ -7,10 +7,10 @@ namespace WorldBestClinic.Models
     {
         public int ServiceId { get; set; }
 
-        public int Price { get; set; } = 0;
+        public int Price { get; set; } = 0;//New add field
 
         [DisplayName("Service Name")]
-        public string ServiceName { get; set; } = string.Empty;
+        public string ServiceName { get; set; } = string.Empty; //New add field
 
 
         [DisplayName("Service Photo")]
@@ -18,10 +18,9 @@ namespace WorldBestClinic.Models
 
         public string Description { get; set; } = string.Empty;
 
-        public bool IsLab { get; set; }
+        public bool IsLab { get; set; } //New add field
 
 
-        //public Category Category { get; set; } = new();
 
 
     }

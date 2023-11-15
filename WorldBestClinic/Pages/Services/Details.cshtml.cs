@@ -11,7 +11,7 @@ using WorldBestClinic.Models;
 
 namespace WorldBestClinic.Pages.Services
 {
-    [Authorize]
+    //[Authorize]
     public class DetailsModel : PageModel
     {
         private readonly WorldBestClinic.Data.WorldBestClinicContext _context;

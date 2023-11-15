@@ -19,19 +19,22 @@
     <div class="row feature-service">
         @if (Model.Services.Any())
         {
-@*            var randomService = Model.Services[new Random().Next(Model.Services.Count)];
-            string featureImagePath = "/ServicePhotos/" + randomService.FileName;*@
-            <div class="card text-bg-dark hoverEffect">
-                <img src="@featureImagePath" class="card-img" alt="feature">
-                <div class="card-img-overlay">
-                    <h5 class="card-title">Feature service</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small>Last updated 3 mins ago</small></p>
+            string detailsPageLink =$"/Services/Details?id={randomService.ServiceId}";
+
+            <a href="@detailsPageLink"> 
+                @*//how to do it in razor page*@
+                
+                <div class="card text-bg-dark hoverEffect">
+                    <img src="@featureImagePath" class="card-img" alt="feature">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">Feature service</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <p class="card-text"><small>Last updated 3 mins ago</small></p>
+                    </div>
                 </div>
-            </div>
+
+            </a>
         }
-
-
     </div>
 
 </div>
@@ -43,16 +46,19 @@
             if(item != randomService)
             {
                 string imagePath = "/ServicePhotos/" + item.FileName;
+                string detailPagePath = $"/Services/Details?id={item.ServiceId}";
                 <div class="col mb-4">
-                    <div class="card hoverEffect" style="width: 18rem;">
-                        <img src="@imagePath" class="card-img-top" style="width: 100%; height: 200px; alt="ServicePhoto">
+                    <a href="@detailPagePath">
+                        <div class="card hoverEffect" style="width: 18rem;">
+                            <img src="@imagePath" class="card-img-top" style="width: 100%; height: 200px; alt="ServicePhoto">
 
 
-                        <div class="card-body">
-                            <p class="card-text">Check our services.</p>
+                            <div class="card-body">
+                                <p class="card-text">Check our services.</p>
+                            </div>
+                  
                         </div>
-
-                    </div>
+                     </a>
                 </div>
             }
 

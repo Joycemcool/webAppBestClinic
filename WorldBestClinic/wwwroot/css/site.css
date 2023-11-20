@@ -35,22 +35,23 @@ body {
 
 .information {
     background: #F07167;
-/*    padding:1.5em 4em;
-    display:flex;
-    justify-content:space-evenly;*/
-    
+    margin:0;
+   
 }
 
 .information-block{
     border:solid white 2px;
     padding:1em 2em;
     border-radius:30px;
+    color:white;
 }
 
 .feature-service {
-    /*background: #FED9B7;*/
-    padding:1em;
+    padding:1em 0;
     margin:2em 0;
+    width:100%;
+    /*min-height:50vh;*/
+    color:white;
 }
 
 .hoverEffect 
@@ -61,4 +62,12 @@ body {
 .hoverEffect:hover {
     opacity: 0.7;
 
+}
+
+.card-title {
+    color: white;
+}
+.card-text {
+    color: #000f;
+    text-decoration: none;
 }

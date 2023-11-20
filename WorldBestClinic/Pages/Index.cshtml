@@ -6,7 +6,7 @@
     string featureImagePath = "/ServicePhotos/" + randomService.FileName;
 }
 
-<div class="text-center">
+<div class="text-center mt-4">
     <h1 class="display-4">Welcome to the world best clinic</h1>
     <p>Learn about <a href="https://regencyparkfamilypractice.ca/">Regencypark Family Practice</a>.</p>
 </div>
@@ -17,26 +17,20 @@
     <div class="row feature-service">
         @if (Model.Services.Any())
         {
-@*            string detailsPageLink =$"/Services/Details?id={randomService.ServiceId}";*@
-
             <a asp-page="/ServiceDetail" asp-route-id="@randomService.ServiceId">
                 <div class="card text-bg-dark hoverEffect">
                     <img src="@featureImagePath" class="card-img" alt="feature">
-                    <div class="card-img-overlay">
-                        <h5 class="card-title">Feature service</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small>Last updated 3 mins ago</small></p>
+                    <div class="card-img-overlay d-flex align-items-center justify-content-center tex">
+                        <h5 class="card-title fs-1">Feature service</h5>
                     </div>
                 </div>
             </a>
         }
     </div>
-
 </div>
 
 <div class="container">
     <div class="row" >
-
         @*@foreach (var item in Model.Services)*@
         @for(int i = 1; i<=Model.Services.Count();i++)
         {
@@ -44,17 +38,18 @@
             {
                 string imagePath = "/ServicePhotos/" + Model.Services[i-1].FileName;
 
-                <a asp-page="/ServiceDetail" asp-route-id="@Model.Services[i-1].ServiceId" class="hoverEffect col-xl-3 mb-4">
+                <a asp-page="/ServiceDetail" asp-route-id="@Model.Services[i-1].ServiceId" class="hoverEffect col-xl-4 col-md-6 mb-4">
 
                     <div >
 
-                            <img src="@imagePath" class="card-img-top" style="width: 100%; height: 200px;alt="ServicePhoto">
-                                <p class="card-text">Check our services.</p>     
-                </div>
+                         <img src="@imagePath" class="card-img-top" style="height:250px;" alt="ServicePhoto">
+                        <p class="card-text">@Model.Services[i-1].ServiceName </p>
+                        <p class="card-text">@Model.Services[i-1].Price </p>
+                    </div>
                 </a>
             } 
             
-            if(i % 4 == 0)
+@*            if(i % 4 == 0)
             {
                 @:</div><div class="row">
             }
@@ -64,7 +59,7 @@
             if(i == Model.Services.Count())
             {
                 @:</div class="row"> 
-            }
+            }*@
 
         }
 

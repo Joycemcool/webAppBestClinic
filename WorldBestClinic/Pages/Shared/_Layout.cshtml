@@ -61,13 +61,21 @@
                 </div>
             </div>
         </nav>
-        <div class="container-fluid d-flex px-4 py-1 align-items-center justify-content-around information flex-wrap">
-            <h6 class="information-block my-4 mx-1"> i Information</h6>
-            <h6 class="information-block my-4 mx-1"> i Information</h6>
-            <h6 class="information-block my-4 mx-1"> i Information</h6>
-            <h6 class="information-block my-4 mx-1"> i Information</h6>
-            <h6 class="information-block my-4 mx-1"> i Information</h6>
-        </div>
+
+        @if (ViewData["Title"] != null)
+        {
+            if (ViewData["Title"].ToString() == "Home")
+            {
+                <div class="container-fluid d-flex px-4 py-1 align-items-center justify-content-around information flex-wrap">
+                    <h6 class="information-block my-4 mx-1"> i Information</h6>
+                    <h6 class="information-block my-4 mx-1"> i Information</h6>
+                    <h6 class="information-block my-4 mx-1"> i Information</h6>
+                    <h6 class="information-block my-4 mx-1"> i Information</h6>
+                    <h6 class="information-block my-4 mx-1"> i Information</h6>
+                </div>
+            }
+        }
+
 @*
         Make it render from list of information *@
     </header>

@@ -47,16 +47,18 @@ body {
 }
 
 .feature-service {
-    padding:1em 0;
-    margin:2em 0;
-    width:100%;
+    padding: 1em 0;
+    margin: 2em 0;
+    width: 100%;
     /*min-height:50vh;*/
-    color:white;
+    color: white;
+    text-decoration: none;
 }
 
 .hoverEffect 
 {
     transition: opacity 0.5s ease-in-out;
+
 }
 
 .hoverEffect:hover {
@@ -68,6 +70,7 @@ body {
     color: white;
 }
 .card-text {
+
     color: #000f;
     text-decoration: none;
 }

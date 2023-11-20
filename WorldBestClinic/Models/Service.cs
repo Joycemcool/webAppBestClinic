@@ -16,7 +16,11 @@ namespace WorldBestClinic.Models
         [DisplayName("Service Photo")]
         public string FileName { get; set; } = string.Empty;
 
+        [DisplayName("Service Description")]
+
         public string Description { get; set; } = string.Empty;
+        [DisplayName("When Do You Need")]
+        public string WhenYouNeed { get; set; } = string.Empty;
 
         public bool IsLab { get; set; } //New add field
 

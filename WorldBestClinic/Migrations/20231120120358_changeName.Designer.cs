@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorldBestClinic.Data;
 
@@ -10,9 +11,11 @@ using WorldBestClinic.Data;
 namespace WorldBestClinic.Migrations
 {
     [DbContext(typeof(WorldBestClinicContext))]
-    partial class WorldBestClinicContextModelSnapshot : ModelSnapshot
+    [Migration("20231120120358_changeName")]
+    partial class changeName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

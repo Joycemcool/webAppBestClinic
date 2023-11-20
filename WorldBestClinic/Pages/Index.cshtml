@@ -38,9 +38,9 @@
             {
                 string imagePath = "/ServicePhotos/" + Model.Services[i-1].FileName;
 
-                <a asp-page="/ServiceDetail" asp-route-id="@Model.Services[i-1].ServiceId" class="hoverEffect col-xl-4 col-md-6 mb-4">
+                <a asp-page="/ServiceDetail" asp-route-id="@Model.Services[i-1].ServiceId" class="hoverEffect col-xl-4 col-md-6 mb-4" style="text-decoration:none">
 
-                    <div >
+                    <div  >
 
                          <img src="@imagePath" class="card-img-top" style="height:250px;" alt="ServicePhoto">
                         <p class="card-text">@Model.Services[i-1].ServiceName </p>

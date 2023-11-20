@@ -17,6 +17,8 @@ namespace WorldBestClinic
         [BindProperty]
         public Service Service { get; set; } = default!;
 
+        public string Message { get; set; } = string.Empty;
+
         public ServiceDetailModel(WorldBestClinicContext context, IWebHostEnvironment env)
         {
             _context = context;
@@ -34,6 +36,40 @@ namespace WorldBestClinic
                 return NotFound();
             }
             Service = await service;
+
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            string oldCartValue = Request.Cookies["ShoppingCart"];
+
+            // Set the "ShoppingCart" cookie with a 1-day expiry and a sliding expiration in 5 days.
+            var cookieOptions = new CookieOptions
+            {
+                Expires = DateTime.Now.AddDays(1), // 1-day expiry
+                MaxAge = TimeSpan.FromDays(5)       // Sliding expiration interval (5 days)
+            };
+
+
+            //Add cookie 
+            if (string.IsNullOrEmpty(oldCartValue))
+            {
+                Response.Cookies.Append("ShoppingCart", Service.ServiceId.ToString());
+                
+            }
+            else
+            {
+                string newCartValue = oldCartValue + "," + Service.ServiceId.ToString();
+                Response.Cookies.Append("ShoppingCart", newCartValue);
+
+            }
+
+            Message = "Service added to cart";
 
             return Page();
         }

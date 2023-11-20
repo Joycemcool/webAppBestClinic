@@ -1,0 +1,50 @@
+﻿@page 
+@model WorldBestClinic.ServiceDetailModel
+@{
+    ViewData["Title"] = "ServiceDetail";
+
+    //string imagePath 
+    //Put home page pho
+}
+
+
+<div class="container">
+    <div class="row mt-3">
+        @{string imagePath = "ServicePhotos/" + Model.Service.FileName;}
+        <div class="col-md-6 mb-3">
+            <img src="@imagePath" class="img-fluid rounded"/>
+        </div>
+        <div class="col-md-6">
+            <h5> Service details</h5>
+            <div class="mb-3">
+                <label asp-for="Service.ServiceName" class="control-label fw-semibold"></label>
+                <div>@Model.Service.ServiceName </div>
+            </div>
+            <hr />
+            <div class="mb-3">
+                <label asp-for="Service.Description" class="fw-semibold"></label>
+                <div >@Model.Service.Description </div>
+            </div>
+            <hr />
+
+            <div class="mb-3">
+                <label asp-for="Service.Price" class="control-label fw-semibold"></label>
+                <div >@Model.Service.Price </div>
+            </div>
+            <hr />
+
+            <div class="mb-3">
+                <label asp-for="Service.IsLab" class="control-label"></label>
+                <div >@Model.Service.IsLab </div>
+            </div>
+            <hr />
+
+            <div class="mb-3">
+                <button type="button" class="btn btn-primary">Add to Cart</button>
+                <a asp-page="/Index" type="button" class="btn btn-secondary">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+

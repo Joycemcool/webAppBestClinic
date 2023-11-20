@@ -11,19 +11,15 @@
     <p>Learn about <a href="https://regencyparkfamilypractice.ca/">Regencypark Family Practice</a>.</p>
 </div>
 
-@*@{
-    var randomService = Model.Services[new Random().Next(Ser)]
-}*@
+
 
 <div class="container">
     <div class="row feature-service">
         @if (Model.Services.Any())
         {
-            string detailsPageLink =$"/Services/Details?id={randomService.ServiceId}";
+@*            string detailsPageLink =$"/Services/Details?id={randomService.ServiceId}";*@
 
-            <a href="@detailsPageLink"> 
-                @*//how to do it in razor page*@
-                
+            <a asp-page="/ServiceDetail" asp-route-id="@randomService.ServiceId">
                 <div class="card text-bg-dark hoverEffect">
                     <img src="@featureImagePath" class="card-img" alt="feature">
                     <div class="card-img-overlay">
@@ -32,7 +28,6 @@
                         <p class="card-text"><small>Last updated 3 mins ago</small></p>
                     </div>
                 </div>
-
             </a>
         }
     </div>
@@ -40,41 +35,38 @@
 </div>
 
 <div class="container">
-    <div class="row">
-        @foreach (var item in Model.Services)
+    <div class="row" >
+
+        @*@foreach (var item in Model.Services)*@
+        @for(int i = 1; i<=Model.Services.Count();i++)
         {
-            if(item != randomService)
+            if(Model.Services[i-1] != randomService)
             {
-                string imagePath = "/ServicePhotos/" + item.FileName;
-                string detailPagePath = $"/Services/Details?id={item.ServiceId}";
-                <div class="col mb-4">
-                    <a href="@detailPagePath">
-                        <div class="card hoverEffect" style="width: 18rem;">
-                            <img src="@imagePath" class="card-img-top" style="width: 100%; height: 200px; alt="ServicePhoto">
+                string imagePath = "/ServicePhotos/" + Model.Services[i-1].FileName;
 
+                <a asp-page="/ServiceDetail" asp-route-id="@Model.Services[i-1].ServiceId" class="hoverEffect col-xl-3 mb-4">
 
-                            <div class="card-body">
-                                <p class="card-text">Check our services.</p>
-                            </div>
-                  
-                        </div>
-                     </a>
+                    <div >
+
+                            <img src="@imagePath" class="card-img-top" style="width: 100%; height: 200px;alt="ServicePhoto">
+                                <p class="card-text">Check our services.</p>     
                 </div>
+                </a>
+            } 
+            
+            if(i % 4 == 0)
+            {
+                @:</div><div class="row">
             }
 
-           
+
+             // Close the last row
+            if(i == Model.Services.Count())
+            {
+                @:</div class="row"> 
+            }
+
         }
 
     </div>
-
-   @*  @foreach (var item in Model.Services)
-    {
-        string imagePath = "/ServicePhotos/" + item.FileName;
-
-        <div class="pin-box">
-            <img src="@imagePath" class="mb-2" data-bs-toggle="modal" data-bs-target="#photoModal">
-            @*<img src="@imagePath" class="mb-2" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-photo="@item.PhotoId">
-        </div>
-    }
- *@
 </div>

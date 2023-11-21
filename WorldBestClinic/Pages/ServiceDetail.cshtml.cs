@@ -10,16 +10,14 @@ namespace WorldBestClinic
     {
         private readonly WorldBestClinic.Data.WorldBestClinicContext _context;
 
-
-        [BindProperty(SupportsGet = true)]
-        public int ServiceId { get; set; }
-
         [BindProperty]
-        public Service Service { get; set; } = default!;
+        public Service Service { get; set; } = new();
 
         public string Message { get; set; } = string.Empty;
 
-        public ServiceDetailModel(WorldBestClinicContext context, IWebHostEnvironment env)
+        public string MessageCookie { get; set; } = string.Empty;
+
+        public ServiceDetailModel(WorldBestClinicContext context)
         {
             _context = context;
 
@@ -40,8 +38,16 @@ namespace WorldBestClinic
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int id)
         {
+            var service = _context.Service.FirstOrDefaultAsync(m => m.ServiceId == id);
+
+            if (service == null)
+            {
+                return NotFound();
+            }
+            Service = await service;
+
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -51,8 +57,7 @@ namespace WorldBestClinic
             // Set the "ShoppingCart" cookie with a 1-day expiry and a sliding expiration in 5 days.
             var cookieOptions = new CookieOptions
             {
-                Expires = DateTime.Now.AddDays(1), // 1-day expiry
-                MaxAge = TimeSpan.FromDays(5)       // Sliding expiration interval (5 days)
+                Expires = DateTime.Now.AddDays(1)
             };
 
 
@@ -71,7 +76,15 @@ namespace WorldBestClinic
 
             Message = "Service added to cart";
 
+            MessageCookie = "Your shopping cart items: ;" + Request.Cookies["ShoppingCart"];
+
+            await _context.SaveChangesAsync();  
+
             return Page();
+
+            //return RedirectToPage({id = Service.ServiceId});
+
+            //return RedirectToPage("./ServiceDetail");
         }
     }
 }

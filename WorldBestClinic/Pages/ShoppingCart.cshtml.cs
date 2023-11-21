@@ -1,12 +1,42 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WorldBestClinic.Data;
+using WorldBestClinic.Models;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace WorldBestClinic.Pages
 {
     public class ShoppingCartModel : PageModel
     {
-        public void OnGet()
+        private readonly WorldBestClinic.Data.WorldBestClinicContext _context;
+
+
+        public List<Service> Services { get; set; } = new();
+
+
+        public ShoppingCartModel(WorldBestClinicContext context)
         {
+            _context = context;
+
+        }
+
+        public async Task OnGetAsync()
+        {
+            if (_context.Service != null)
+            {
+                string cartCookieValue = Request.Cookies["ShoppingCart"];
+
+                if (!string.IsNullOrEmpty(cartCookieValue))
+                {
+                    // Split the comma-separated values and convert them to integers (assuming the values are integers)
+                    var serviceIds = cartCookieValue.Split(',').Select(int.Parse).ToList();
+
+                    // Query the database to get services based on the IDs from the cookie
+                    Services = await _context.Service.Where(s => serviceIds.Contains(s.ServiceId)).ToListAsync();
+                }
+            }
+               
         }
     }
 }

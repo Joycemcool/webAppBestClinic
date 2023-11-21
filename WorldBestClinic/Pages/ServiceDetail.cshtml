@@ -12,13 +12,14 @@
     <form method="post">
     <div class="row mt-3">
 
-            @{string imagePath = "ServicePhotos/" + Model.Service.FileName;}
+            @{string imagePath = "/ServicePhotos/" + Model.Service.FileName;}
             <div class="col-md-6 mb-3">
                 <img src="@imagePath" class="img-fluid rounded"/>
             </div>
 
             <div class="col-md-6">
                 <h5> Service details</h5>
+                <input type="hidden" asp-for="Service.ServiceId" />
                 <div class="mb-3">
                     <label asp-for="Service.ServiceName" class="control-label fw-semibold"></label>
                     <div>@Model.Service.ServiceName </div>
@@ -57,6 +58,10 @@
     </form>
     <div class="row mt-3">
         @Model.Message
+    </div>
+
+    <div class="row mt-3">
+        @Model.MessageCookie
     </div>
 </div>
 

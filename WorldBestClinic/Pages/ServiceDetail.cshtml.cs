@@ -39,14 +39,15 @@ namespace WorldBestClinic
         }
 
         public async Task<IActionResult> OnPostAsync(int id)
+         //public async Task<IActionResult> OnPostAsync(int id)
         {
-            var service = _context.Service.FirstOrDefaultAsync(m => m.ServiceId == id);
+            //var service = _context.Service.FirstOrDefaultAsync(m => m.ServiceId == id);
 
-            if (service == null)
-            {
-                return NotFound();
-            }
-            Service = await service;
+            //if (service == null)
+            //{
+            //    return NotFound();
+            //}
+            //Service = await service;
 
             if (!ModelState.IsValid)
             {
@@ -80,11 +81,8 @@ namespace WorldBestClinic
 
             await _context.SaveChangesAsync();  
 
-            return Page();
+            return RedirectToPage("/Index");
 
-            //return RedirectToPage({id = Service.ServiceId});
-
-            //return RedirectToPage("./ServiceDetail");
         }
     }
 }

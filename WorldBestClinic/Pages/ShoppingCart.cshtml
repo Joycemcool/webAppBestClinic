@@ -3,14 +3,56 @@
 @{
 }
 
+<div class = "container">
+      <div class="row mt-3">
 
-<div class="container">
-   
-        <div class="row mt-3">
+         <h1>Shopping cart</h1>
+          
+@*            @{string imagePath = "/ServicePhotos/" + Model.Service.FileName;}
+            <div class="col-md-6 mb-3">
+                <img src="@imagePath" class="img-fluid rounded"/>
+            </div>*@
 
-           
+@*            <div class="col-md-6">
+                <h5> Service details</h5>
+                <input type="hidden" asp-for="Service.ServiceId" />
+                <div class="mb-3">
+                    <label asp-for="Service.ServiceName" class="control-label fw-semibold"></label>
+                    <div>@Model.Service.ServiceName </div>
+                </div>
+                <hr />
+                <div class="mb-3">
+                    <label asp-for="Service.Description" class="fw-semibold"></label>
+                    <div >@Model.Service.Description </div>
+                </div>
+                <hr />
 
+                <div class="mb-3">
+                    <label asp-for="Service.WhenYouNeed" class="fw-semibold"></label>
+                    <div>@Model.Service.WhenYouNeed </div>
+                </div>
+                <hr />
+
+                <div class="mb-3">
+                    <label asp-for="Service.Price" class="control-label fw-semibold"></label>
+                    <div >@Model.Service.Price </div>
+                </div>
+                <hr />
+
+                <div class="mb-3">
+                    <label asp-for="Service.IsLab" class="control-label"></label>
+                    <div >@Model.Service.IsLab </div>
+                </div>
+                <hr />
+
+                <div class="mb-3">
+                    <input id="addToCartBtn" type="submit" value="Add to Cart" class="btn btn-primary">
+                    <a asp-page="/Index" type="button" class="btn btn-secondary">Continue Shopping</a>
+                </div>
+            </div>*@
     </div>
 
-
 </div>
+
+
+

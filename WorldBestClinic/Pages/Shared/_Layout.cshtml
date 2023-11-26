@@ -40,22 +40,27 @@
 
                             <a class="nav-link text-dark" asp-area="" asp-page="/ShoppingCart">
 
-                                @{
-                                    int numberOfItems = 0;
-                                    string shoppingCartCookie = Context.Request.Cookies["ShoppingCart"];
-                                   @if(shoppingCartCookie != null && !string.IsNullOrEmpty(shoppingCartCookie))
-                                    {
-                                        var serviceIds = shoppingCartCookie.Split(',').Select(int.Parse).ToList();
-                                        numberOfItems = serviceIds.Count;
-                                        if(numberOfItems > 0)
+                                <i class="fa-solid fa-shopping-cart fa-1x position-relative btn p-2">
+                                    @{
+                                        int numberOfItems = 0;
+                                        string shoppingCartCookie = Context.Request.Cookies["ShoppingCart"];
+                                        @if (shoppingCartCookie != null && !string.IsNullOrEmpty(shoppingCartCookie))
                                         {
-                                    <span class="badge badge-danger" style="color:black">Hey @numberOfItems</span>
-    
-                                         }
-                                     }
-                                }
+                                            var serviceIds = shoppingCartCookie.Split(',').Select(int.Parse).ToList();
+                                            numberOfItems = serviceIds.Count;
+                                            if (numberOfItems > 0)
+                                            {
+                                                <span class="badge position-absolute top-0 start-100 translate-middle rounded-pill bg-primary"> @numberOfItems</span>
+
+                                            }
+                                        }
+                                    }
+
+                                </i>
+
+
                                
-                                <i class="fa fa-shopping-cart"></i>
+
                             </a>
                         </li>
 

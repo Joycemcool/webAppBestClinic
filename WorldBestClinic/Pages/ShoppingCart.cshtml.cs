@@ -13,6 +13,8 @@ namespace WorldBestClinic.Pages
 
         public string ShoppingCartMessage { get; set; } = string.Empty;
 
+        public int ShoppingCartNums;
+
         public List<Service> Services { get; set; } = new();
 
 
@@ -32,6 +34,7 @@ namespace WorldBestClinic.Pages
                 {
                     // Split the comma-separated values and convert them to integers (assuming the values are integers)
                     var serviceIds = ShoppingCartMessage.Split(',').Select(int.Parse).ToList();
+                    ShoppingCartNums = serviceIds.Count;
 
                     // Query the database to get services based on the IDs from the cookie
                     Services = await _context.Service.Where(s => serviceIds.Contains(s.ServiceId)).ToListAsync();

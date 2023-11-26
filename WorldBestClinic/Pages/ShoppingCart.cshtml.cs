@@ -11,6 +11,7 @@ namespace WorldBestClinic.Pages
     {
         private readonly WorldBestClinic.Data.WorldBestClinicContext _context;
 
+        public string ShoppingCartMessage { get; set; } = string.Empty;
 
         public List<Service> Services { get; set; } = new();
 
@@ -25,12 +26,12 @@ namespace WorldBestClinic.Pages
         {
             if (_context.Service != null)
             {
-                string cartCookieValue = Request.Cookies["ShoppingCart"];
+                ShoppingCartMessage = Request.Cookies["ShoppingCart"];
 
-                if (!string.IsNullOrEmpty(cartCookieValue))
+                if (!string.IsNullOrEmpty(ShoppingCartMessage))
                 {
                     // Split the comma-separated values and convert them to integers (assuming the values are integers)
-                    var serviceIds = cartCookieValue.Split(',').Select(int.Parse).ToList();
+                    var serviceIds = ShoppingCartMessage.Split(',').Select(int.Parse).ToList();
 
                     // Query the database to get services based on the IDs from the cookie
                     Services = await _context.Service.Where(s => serviceIds.Contains(s.ServiceId)).ToListAsync();

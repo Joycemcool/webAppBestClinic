@@ -55,7 +55,8 @@ namespace WorldBestClinic.Pages
                         ServiceQuantities.Add(quantity);
                     }
 
-                    Subtotal = Services.Sum(s => s.Price);
+                    //Subtotal = Services.Sum(s => s.Price);
+                    Subtotal = Services.Select((s, index) => s.Price * ServiceQuantities[index]).Sum();
                 }
 
                 Tax =(float)( Subtotal * 0.15);

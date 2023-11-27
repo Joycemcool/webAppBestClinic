@@ -3,40 +3,66 @@
 @{
 }
 
-<div class = "container">
-      <div class="row mt-3">
+@if(Model.Services.Count >0){
+    <div class="container">
 
-         <h1>Shopping cart</h1>
-          
-         <hr />
-        @foreach(var item in Model.Services)
-        {
-             string imagePath = "/ServicePhotos/" + item.FileName;
-
-            <div class="col-md-6 mb-3">
-                <img src="@imagePath" class="img-fluid rounded"/>
+        <div class="d-flex flex-column col-md-10 mx-auto align-content-center border border-secondary-subtle">
+            <div class="d-flex text-center mt-3">
+                <h6 class="col-md-6">Shopping cart</h6>
+                <h6 class="col text-end me-5">Price</h6>
+                <hr />
             </div>
 
-            <div class="col-md-6">
-                <h5> Service details</h5>
-                  <h4>
-                @Html.DisplayFor(modelItem => item.ServiceName)
-            </h4>
-                <h4>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </h4>
-@*                <div class="mb-3">
-                    <label asp-for="Service.ServiceName" class="control-label fw-semibold"></label>
-                    <div>@Model.Service.ServiceName </div>
+            @for (int i = 0; i < @Model.Services.Count; i++)
+            {
+                var service = @Model.Services[i];
+                var quantity = @Model.ServiceQuantities[i];
+
+                string imagePath = "/ServicePhotos/" + service.FileName;
+                <div class="d-flex flex-row justify-content-evenly p-3">
+                    <div class="col-md-2 mb-3">
+                        <img src="@imagePath" class="img-fluid rounded img-thumbnail" />
+                    </div>
+
+                    <div class="col mx-auto px-4">
+                        <div class="fw-semibold fs-5">
+                            @service.ServiceName
+                        </div>
+                        <div class="btn btn-outline-secondary">
+                            Qty: @quantity
+                        </div>
+                    </div>
+
+                    <div class="col text-end me-5">
+
+                        @service.Price
+                    </div>
+
                 </div>
-                <hr />*@
-            </div>
-        }
+            }
+        </div>
 
-      
+        <div class="col-md-10 d-flex flex-column align-items-end">
+                <div class="mt-3 text-center">Subtotal: @Model.Subtotal</div>
+                <div class="mt-3 text-center">Subtotal: @Model.Tax</div>
+                <div class="mt-3 text-center">Subtotal: @Model.Delivery</div>
+                <div class="mt-3 text-center">Subtotal: @Model.Total</div>
+        </div>
+
+
+        <div class="mt-3 d-flex col-md-10 justify-content-end">
+            <a asp-page="/Index" type="button" class="btn btn-primary mx-2">Checkout </a>
+            <a asp-page="/Index" type="button" class="btn btn-secondary ">Continue Shopping</a>
+        </div>
+
     </div>
 
-</div>
+}
+else
+{
+    <h1>Add items to your shopping cart</h1>
+}
+
 
 
 

@@ -68,6 +68,9 @@ body {
 
 .card-title {
     color: white;
+    background:rgba(164, 169, 173, 0.7);
+    padding: 0.5em;
+    border-radius:10px;
 }
 .card-text {
     padding:0;

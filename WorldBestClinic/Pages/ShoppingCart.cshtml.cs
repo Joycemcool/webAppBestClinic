@@ -17,6 +17,15 @@ namespace WorldBestClinic.Pages
 
         public List<Service> Services { get; set; } = new();
 
+        public float Subtotal = 0;
+
+        public float Tax = 0;
+
+        public float Delivery = 10;
+
+        public float Total = 0;
+
+        public List<int> ServiceQuantities { get; set; }
 
         public ShoppingCartModel(WorldBestClinicContext context)
         {
@@ -38,7 +47,20 @@ namespace WorldBestClinic.Pages
 
                     // Query the database to get services based on the IDs from the cookie
                     Services = await _context.Service.Where(s => serviceIds.Contains(s.ServiceId)).ToListAsync();
+
+                    ServiceQuantities = new List<int>();
+                    foreach (var serviceId in serviceIds)
+                    {
+                        int quantity = serviceIds.Count(id => id == serviceId);
+                        ServiceQuantities.Add(quantity);
+                    }
+
+                    Subtotal = Services.Sum(s => s.Price);
                 }
+
+                Tax =(float)( Subtotal * 0.15);
+
+                Total = Subtotal + Tax + Delivery;
             }
                
         }

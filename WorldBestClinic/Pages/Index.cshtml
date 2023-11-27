@@ -21,7 +21,7 @@
                 <div class="card text-bg-dark hoverEffect">
                     <img src="@featureImagePath" class="card-img" alt="feature">
                     <div class="card-img-overlay d-flex align-items-center justify-content-center tex">
-                        <h5 class="card-title fs-1">Feature service</h5>
+                        <h5 class="card-title fs-1">@randomService.ServiceName</h5>
                     </div>
                 </div>
             </a>
@@ -31,7 +31,6 @@
 
 <div class="container">
     <div class="row" >
-        @*@foreach (var item in Model.Services)*@
         @for(int i = 1; i<=Model.Services.Count();i++)
         {
             if(Model.Services[i-1] != randomService)
@@ -49,17 +48,6 @@
                 </a>
             } 
             
-@*            if(i % 4 == 0)
-            {
-                @:</div><div class="row">
-            }
-
-
-             // Close the last row
-            if(i == Model.Services.Count())
-            {
-                @:</div class="row"> 
-            }*@
 
         }
 

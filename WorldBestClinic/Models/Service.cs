@@ -19,9 +19,10 @@ namespace WorldBestClinic.Models
         [DisplayName("Service Description")]
 
         public string Description { get; set; } = string.Empty;
-        [DisplayName("When Do You Need")]
+        [DisplayName("Location")]
         public string WhenYouNeed { get; set; } = string.Empty;
 
+        [DisplayName("Service Type")]
         public bool IsLab { get; set; } //New add field
 
 

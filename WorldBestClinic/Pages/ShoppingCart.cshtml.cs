@@ -48,10 +48,28 @@ namespace WorldBestClinic.Pages
                     // Query the database to get services based on the IDs from the cookie
                     Services = await _context.Service.Where(s => serviceIds.Contains(s.ServiceId)).ToListAsync();
 
+                    //ServiceQuantities = new List<int>();
                     ServiceQuantities = new List<int>();
+                    var serviceIdCounts = new Dictionary<int, int>();
+
                     foreach (var serviceId in serviceIds)
                     {
-                        int quantity = serviceIds.Count(id => id == serviceId);
+                        if (serviceIdCounts.ContainsKey(serviceId))
+                        {
+                            // Increment count if serviceId already exists in the dictionary
+                            serviceIdCounts[serviceId]++;
+                        }
+                        else
+                        {
+                            // Add serviceId to the dictionary with count 1 if it doesn't exist
+                            serviceIdCounts[serviceId] = 1;
+                        }
+                    }
+
+                    foreach (var serviceId in serviceIds)
+                    {
+                        // Use the dictionary to get the quantity for each serviceId
+                        int quantity = serviceIdCounts[serviceId];
                         ServiceQuantities.Add(quantity);
                     }
 

@@ -35,6 +35,16 @@ namespace WorldBestClinic
             }
             Service = await service;
 
+            // Add logic to determine the message based on the value of IsLab
+            if (Service.IsLab)
+            {
+                ViewData["ServiceMessage"] = "This service is a lab service.";
+            }
+            else
+            {
+                ViewData["ServiceMessage"] = "Clinic service.";
+            }
+
             return Page();
         }
 

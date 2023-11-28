@@ -9,25 +9,31 @@ namespace WorldBestClinic.Pages
     public class CheckOutModel : PageModel
     {
         static readonly HttpClient client = new HttpClient();
+
         [BindProperty]
         public PaymentViewModel Payment { get; set; }
         public void OnGet()
         {
         }
 
-        //    public async Task<IActionResult> OnPostAsync(PaymentViewModel payment)        
-        //    {
-        //        string ShoppingCartMessage = Request.Cookies["ShoppingCart"];
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            string shoppingCartValue = Request.Cookies["ShoppingCart"];
 
-        //        Payment = new PaymentViewModel();
-        //        Payment.products = ShoppingCartMessage;
+            Payment.products = shoppingCartValue;
 
-        //        string jsonPaymentData = System.Text.Json.JsonSerializer.Serialize<PaymentViewModel>(payment);
-        //        string apiUrl = "https://nscc-inet2005-purchase-api.azurewebsites.net/purchase ";
+            using StringContent jsonPaymentData = new(System.Text.Json.JsonSerializer.Serialize(Payment) );
+            string apiurl = "https://nscc-inet2005-purchase-api.azurewebsites.net/purchase";
 
-        //        HttpResponseMessage response = await client.GetAsync(apiUrl, jsonPaymentData);
+            HttpResponseMessage response = await client.PostAsync(apiurl, jsonPaymentData);
 
-        //        RedirectToPage("/CheckOUt");
-        //    }
+            return RedirectToPage("/Confirmation");
+
+            
+        }
     }
 }

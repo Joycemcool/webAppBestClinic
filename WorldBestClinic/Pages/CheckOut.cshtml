@@ -4,3 +4,58 @@
 }
 
 <h1>Check out</h1>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Payment.CCNumber" />
+    <input type="hidden" asp-for="Payment.Cvv" />
+    <input type="hidden" asp-for="Payment.products" />
+    <!-- Mailing Address -->
+    <div class="mb-3">
+        <label asp-for="Payment.Name" class="control-label"></label>
+        <input asp-for="Payment.Name" class="form-control" />
+        <span asp-validation-for="Payment.Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Payment.Address" class="control-label"></label>
+        <input asp-for="Payment.Address" class="form-control" />
+        <span asp-validation-for="Payment.Address" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Payment.City" class="control-label"></label>
+        <input asp-for="Payment.City" class="form-control" />
+        <span asp-validation-for="Payment.City" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Payment.Province" class="control-label"></label>
+        <input asp-for="Payment.Province" class="form-control" />
+        <span asp-validation-for="Payment.Province" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Payment.PostalCode" class="control-label"></label>
+        <input asp-for="Payment.PostalCode" class="form-control" />
+        <span asp-validation-for="Payment.PostalCode" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Payment.Country" class="control-label"></label>
+        <input asp-for="Payment.Country" class="form-control" />
+        <span asp-validation-for="Payment.Country" class="text-danger"></span>
+    </div>
+
+    <!-- Billing Details -->
+    <div class="mb-3">
+        <label asp-for="Payment.CCExpiryDate" class="control-label"></label>
+        <input asp-for="Payment.CCExpiryDate" type="number" class="form-control" />
+        <span asp-validation-for="Payment.CCExpiryDate" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+    <input type="submit" value="Save" class="btn btn-primary" /> &nbsp;&nbsp;
+    <a asp-page="./Index" class="btn btn-outline-dark">Cancel</a>
+    </div>
+
+</form>

@@ -47,6 +47,12 @@
         <span asp-validation-for="Payment.Country" class="text-danger"></span>
     </div>
 
+    <div class="mb-3">
+        <label asp-for="Payment.CCNumber" class="control-label"></label>
+        <input asp-for="Payment.CCNumber" class="form-control" />
+        <span asp-validation-for="Payment.CCNumber" class="text-danger"></span>
+    </div>
+
     <!-- Billing Details -->
     <div class="mb-3">
         <label asp-for="Payment.CCExpiryDate" class="control-label"></label>
@@ -54,8 +60,8 @@
         <span asp-validation-for="Payment.CCExpiryDate" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <input type="submit" value="Save" class="btn btn-primary" />
-        <a asp-page="./Index" class="btn btn-outline-dark">Cancel</a>
+        <input type="submit" value="Place Order" class="btn btn-primary" />
+        <a asp-page="./ShoppingCart" class="btn btn-outline-dark">Return to Shopping Cart</a>
     </div>
 
 </form>

@@ -34,3 +34,7 @@ namespace WorldBestClinic.ViewModels
 
     }
 }
+
+
+//https://learn.microsoft.com/en-us/aspnet/web-pages/overview/ui-layouts-and-themes/validating-user-input-in-aspnet-web-pages-sites
+//https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/validation?view=aspnetcore-8.0

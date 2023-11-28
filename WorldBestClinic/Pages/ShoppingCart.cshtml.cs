@@ -25,6 +25,7 @@ namespace WorldBestClinic.Pages
 
         public float Total = 0;
 
+        public Dictionary<int,int> itemsQuantity { get; set; }
         public List<int> ServiceQuantities { get; set; }
 
         public ShoppingCartModel(WorldBestClinicContext context)
@@ -50,28 +51,30 @@ namespace WorldBestClinic.Pages
 
                     //ServiceQuantities = new List<int>();
                     ServiceQuantities = new List<int>();
-                    var serviceIdCounts = new Dictionary<int, int>();
+                    itemsQuantity = new Dictionary<int, int>();
 
                     foreach (var serviceId in serviceIds)
                     {
-                        if (serviceIdCounts.ContainsKey(serviceId))
+                        if (itemsQuantity.ContainsKey(serviceId))
                         {
                             // Increment count if serviceId already exists in the dictionary
-                            serviceIdCounts[serviceId]++;
+                            itemsQuantity[serviceId]++;
                         }
                         else
                         {
                             // Add serviceId to the dictionary with count 1 if it doesn't exist
-                            serviceIdCounts[serviceId] = 1;
+                            itemsQuantity[serviceId] = 1;
                         }
                     }
 
                     foreach (var serviceId in serviceIds)
                     {
                         // Use the dictionary to get the quantity for each serviceId
-                        int quantity = serviceIdCounts[serviceId];
+                        int quantity = itemsQuantity[serviceId];
                         ServiceQuantities.Add(quantity);
                     }
+
+                    var numberGroups = 
 
                     //Subtotal = Services.Sum(s => s.Price);
                     Subtotal = Services.Select((s, index) => s.Price * ServiceQuantities[index]).Sum();

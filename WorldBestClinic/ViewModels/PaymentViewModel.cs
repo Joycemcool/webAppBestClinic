@@ -2,6 +2,9 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Numerics;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace WorldBestClinic.ViewModels
 {
@@ -9,39 +12,47 @@ namespace WorldBestClinic.ViewModels
     {
 
         [Required]
-        public string Name { get; set; } = string.Empty;
+        public string name { get; set; } = string.Empty;
 
         [Required]
-        public string Address { get; set; } = string.Empty;
+        public string address { get; set; } = string.Empty;
 
         [Required]
-        public string City { get; set; } = string.Empty;
+        public string city { get; set; } = string.Empty;
 
         [Required]
-        public string Province { get; set; } = string.Empty;
+        public string province { get; set; } = string.Empty;
 
         [Required]
-        public string PostalCode { get; set; } = string.Empty;
+        public string postalCode { get; set; } = string.Empty;
 
         [Required]
-        public string Country { get; set; } = string.Empty;
+        public string country { get; set; } = string.Empty;
 
         [DisplayName("Credit Card Number")]
-        [CreditCard] public string CCNumber { get; set; } = string.Empty;
+        [JsonIgnore]
+        [CreditCard] public string CCNumberString { get; set; }
+
+        //get the string input and change to int
+        public long ccNumber { get; set; }
 
         [DisplayName("Credit Card Expiration Date")]
         [RegularExpression(@"^(0[1-9]|1[0-2])([0-9]{2})$", ErrorMessage = "Invalid format")]
         [StringLength(4, ErrorMessage = "Invalid length")]
         [Required]
-        public string CCExpiryDate { get; set; } = string.Empty;
+        public string ccExpiryDate { get; set; } = string.Empty;
 
         [DisplayName("CVV Number")]
         [RegularExpression(@"^[0-9]{3,4}$", ErrorMessage = "Invalid format")]
         [StringLength(4, ErrorMessage = "Invalid length")]
-        public string Cvv { get; set; } =string.Empty;
+        [JsonIgnore]
+        public string cvvString { get; set; } =string.Empty;
+
+        //get the string input and change to ints
+        public int cvv { get; set; }
 
         [Required]
-        public string Products { get; set; } = string.Empty;
+        public string products { get; set; } = string.Empty;
 
     }
 }

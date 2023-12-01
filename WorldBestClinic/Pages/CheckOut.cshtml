@@ -10,14 +10,6 @@
     <input type="hidden" asp-for="Payment.products" />
 
 
-    <!-- Mailing Address -->
-
-@*     <div class="mb-3">
-        <label asp-for="Payment.Products" class="control-label"></label>
-        <input asp-for="Payment.Products" class="form-control" />
-        <span asp-validation-for="Payment.Products" class="text-danger"></span>
-    </div> *@
-
     <div class="mb-3">
         <label asp-for="Payment.name" class="control-label"></label>
         <input asp-for="Payment.name" class="form-control" />
@@ -79,10 +71,5 @@
         <input type="submit" value="Place Order" class="btn btn-primary" />
         <a asp-page="./ShoppingCart" class="btn btn-outline-dark">Return to Shopping Cart</a>
     </div>
-
-    <div class="mb-3">
-        <p>@Model.testJson</p>
-    </div>
-
 
 </form>

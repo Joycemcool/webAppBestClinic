@@ -11,23 +11,29 @@ namespace WorldBestClinic.Pages
         static readonly HttpClient client = new HttpClient();
 
         [BindProperty]
-        public PaymentViewModel Payment { get; set; }
+        public PaymentViewModel Payment { get; set; } = new();
         public void OnGet()
         {
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
+            string shoppingCartValue = Request.Cookies["ShoppingCart"];
+
+            //Payment.products = shoppingCartValue;
+
+            using StringContent jsonPaymentData = new(System.Text.Json.JsonSerializer.Serialize(Payment));
+            string apiurl = "https://nscc-inet2005-purchase-api.azurewebsites.net/purchase";
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            string shoppingCartValue = Request.Cookies["ShoppingCart"];
 
-            Payment.products = shoppingCartValue;
+            //Delete cookie
 
-            using StringContent jsonPaymentData = new(System.Text.Json.JsonSerializer.Serialize(Payment) );
-            string apiurl = "https://nscc-inet2005-purchase-api.azurewebsites.net/purchase";
+            //using StringContent jsonPaymentData = new(System.Text.Json.JsonSerializer.Serialize(Payment) );
+            //string apiurl = "https://nscc-inet2005-purchase-api.azurewebsites.net/purchase";
 
             HttpResponseMessage response = await client.PostAsync(apiurl, jsonPaymentData);
 
@@ -37,3 +43,5 @@ namespace WorldBestClinic.Pages
         }
     }
 }
+
+//return RedirectToPage("./Index");

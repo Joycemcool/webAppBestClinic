@@ -7,14 +7,23 @@
 
 <form method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="Payment.CCNumber" />
-    <input type="hidden" asp-for="Payment.Cvv" />
-    <input type="hidden" asp-for="Payment.products" />
+
+    @* Product read from cookie, no need to get input *@
+    @* <input type="hidden" asp-for="Payment.Products" /> *@
+
     <!-- Mailing Address -->
+
+    <div class="mb-3">
+        <label asp-for="Payment.Products" class="control-label"></label>
+        <input asp-for="Payment.Products" class="form-control" />
+        <span asp-validation-for="Payment.Products" class="text-danger"></span>
+
+    </div>
     <div class="mb-3">
         <label asp-for="Payment.Name" class="control-label"></label>
         <input asp-for="Payment.Name" class="form-control" />
         <span asp-validation-for="Payment.Name" class="text-danger"></span>
+
     </div>
 
     <div class="mb-3">
@@ -47,18 +56,26 @@
         <span asp-validation-for="Payment.Country" class="text-danger"></span>
     </div>
 
+
+    <!-- Billing Details -->
     <div class="mb-3">
         <label asp-for="Payment.CCNumber" class="control-label"></label>
         <input asp-for="Payment.CCNumber" class="form-control" />
         <span asp-validation-for="Payment.CCNumber" class="text-danger"></span>
     </div>
 
-    <!-- Billing Details -->
     <div class="mb-3">
         <label asp-for="Payment.CCExpiryDate" class="control-label"></label>
-        <input asp-for="Payment.CCExpiryDate" type="number" class="form-control" />
+        <input asp-for="Payment.CCExpiryDate" class="form-control" />
         <span asp-validation-for="Payment.CCExpiryDate" class="text-danger"></span>
     </div>
+
+    <div class="mb-3">
+        <label asp-for="Payment.Cvv" class="control-label"></label>
+        <input asp-for="Payment.Cvv" class="form-control" />
+        <span asp-validation-for="Payment.Cvv" class="text-danger"></span>
+    </div>
+
     <div class="mb-3">
         <input type="submit" value="Place Order" class="btn btn-primary" />
         <a asp-page="./ShoppingCart" class="btn btn-outline-dark">Return to Shopping Cart</a>

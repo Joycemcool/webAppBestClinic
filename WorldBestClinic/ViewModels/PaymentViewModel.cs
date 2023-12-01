@@ -30,14 +30,17 @@ namespace WorldBestClinic.ViewModels
         [CreditCard] public string CCNumber { get; set; } = string.Empty;
 
         [DisplayName("Credit Card Expiration Date")]
-        //[RegularExpression(@"^(0[1-9]|1[0-2])((0?[1-9]|[1-9][0-9])$"), StringLength(5)]
+        [RegularExpression(@"^(0[1-9]|1[0-2])([0-9]{2})$", ErrorMessage = "Invalid format")]
+        [StringLength(4, ErrorMessage = "Invalid length")]
         [Required]
         public string CCExpiryDate { get; set; } = string.Empty;
 
         [DisplayName("CVV Number")]
-        [RegularExpression(@"^[0-9]{3,4}$"), StringLength(3)]
+        [RegularExpression(@"^[0-9]{3,4}$", ErrorMessage = "Invalid format")]
+        [StringLength(4, ErrorMessage = "Invalid length")]
         public string Cvv { get; set; } =string.Empty;
 
+        [Required]
         public string Products { get; set; } = string.Empty;
 
     }

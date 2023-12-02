@@ -79,16 +79,6 @@ namespace WorldBestClinic.Pages.Services
 
             }
 
-            //
-            // Make a unique image name for updated Service picture
-            //
-
-
-
-
-            //
-            //Validate data
-            //
 
             if (!ModelState.IsValid)
             {

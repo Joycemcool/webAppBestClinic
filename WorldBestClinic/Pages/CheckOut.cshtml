@@ -9,6 +9,7 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="Payment.products" />
 
+    @* Customer Info *@
 
     <div class="mb-3">
         <label asp-for="Payment.name" class="control-label"></label>
@@ -48,7 +49,7 @@
     </div>
 
 
-    <!-- Billing Details -->
+    @* Billing Details *@
     <div class="mb-3">
         <label asp-for="Payment.CCNumberString" class="control-label"></label>
         <input asp-for="Payment.CCNumberString" class="form-control" />

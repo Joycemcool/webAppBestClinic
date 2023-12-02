@@ -28,26 +28,22 @@ namespace WorldBestClinic.Pages
         public async Task<IActionResult> OnPostAsync()
         {
 
-           string cleanedCCNumber = Payment.CCNumberString.Replace(" ", "");
-            string cleanedCvvNumber = Payment.cvvString;
-            long ccNumber = long.Parse(cleanedCCNumber);
-            Payment.ccNumber = ccNumber;
-            Payment.cvv = Int32.Parse(cleanedCvvNumber);
-
-
             if (!ModelState.IsValid)
             {
                 return Page();
             }
+
+            string cleanedCCNumber = Payment.CCNumberString.Replace(" ", "");
+            string cleanedCvvNumber = Payment.cvvString;
+            long ccNumber = long.Parse(cleanedCCNumber);
+            Payment.ccNumber = ccNumber;
+            Payment.cvv = Int32.Parse(cleanedCvvNumber);
 
             //Delete cookie
             string jsonString = System.Text.Json.JsonSerializer.Serialize(Payment);
 
             string apiurl = "https://nscc-inet2005-purchase-api.azurewebsites.net/purchase";
 
-
-            // Read the content as a string
-            //testJson = await jsonPaymentData.ReadAsStringAsync();
 
             StringContent content =new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync(apiurl, content);
@@ -65,24 +61,9 @@ namespace WorldBestClinic.Pages
             }
             else
             {
-                // Request failed with an error (status code is not 2xx)
-                // You might want to handle specific status codes or log the error
-                HttpStatusCode statusCode = response.StatusCode;
-
-                // Example: Check for a specific status code
-                if (statusCode == HttpStatusCode.NotFound)
-                {
-
-                }
-
-                // Example: Log the error
-                Console.WriteLine($"Error: {statusCode} - {response.ReasonPhrase}");
-
                 return Page();
             }
             
         }
     }
 }
-
-//return RedirectToPage("./Index");

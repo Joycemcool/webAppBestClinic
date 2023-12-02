@@ -23,7 +23,7 @@ namespace WorldBestClinic.ViewModels
         [Required]
         public string province { get; set; } = string.Empty;
 
-        [Required]
+        [Required] 
         public string postalCode { get; set; } = string.Empty;
 
         [Required]
@@ -44,7 +44,7 @@ namespace WorldBestClinic.ViewModels
 
         [DisplayName("CVV Number")]
         [RegularExpression(@"^[0-9]{3,4}$", ErrorMessage = "Invalid format")]
-        [StringLength(4, ErrorMessage = "Invalid length")]
+        [StringLength(3, ErrorMessage = "Invalid length")]
         [JsonIgnore]
         public string cvvString { get; set; } =string.Empty;
 
@@ -56,7 +56,3 @@ namespace WorldBestClinic.ViewModels
 
     }
 }
-
-
-//https://learn.microsoft.com/en-us/aspnet/web-pages/overview/ui-layouts-and-themes/validating-user-input-in-aspnet-web-pages-sites
-//https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/validation?view=aspnetcore-8.0

@@ -17,8 +17,6 @@ namespace WorldBestClinic.Pages
 
         public string shoppingCartValue = string.Empty;
 
-        public string testJson = string.Empty;
-
 
         public void OnGet()
         {
@@ -35,8 +33,6 @@ namespace WorldBestClinic.Pages
             long ccNumber = long.Parse(cleanedCCNumber);
             Payment.ccNumber = ccNumber;
             Payment.cvv = Int32.Parse(cleanedCvvNumber);
-            //Payment.ccNumber = 0;
-            //Payment.cvv = 0;
 
 
             if (!ModelState.IsValid)
@@ -58,11 +54,13 @@ namespace WorldBestClinic.Pages
 
             if (response.IsSuccessStatusCode)
             {
-                // Request was successful (status code 2xx)
-                string content1 = await response.Content.ReadAsStringAsync();
-                // Process the content as needed
-
+                var statusCode = (int)response.StatusCode;
                 Response.Cookies.Delete("ShoppingCart");
+
+                //Store the statusCode in TempData
+
+                TempData["StatusCode"] = statusCode;
+
                 return RedirectToPage("/Confirmation");
             }
             else
@@ -74,17 +72,12 @@ namespace WorldBestClinic.Pages
                 // Example: Check for a specific status code
                 if (statusCode == HttpStatusCode.NotFound)
                 {
-                    // Handle 404 Not Found
+
                 }
 
                 // Example: Log the error
                 Console.WriteLine($"Error: {statusCode} - {response.ReasonPhrase}");
 
-                // You can also check the response content for more details
-                string errorContent = await response.Content.ReadAsStringAsync();
-                Console.WriteLine($"Error Content: {errorContent}");
-
-                //return Page(); 
                 return Page();
             }
             

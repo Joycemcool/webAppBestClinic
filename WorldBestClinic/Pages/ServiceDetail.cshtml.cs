@@ -38,11 +38,11 @@ namespace WorldBestClinic
             // Add logic to determine the message based on the value of IsLab
             if (Service.IsLab)
             {
-                ViewData["ServiceMessage"] = "This service is a lab service.";
+                ViewData["ServiceMessage"] = "This service is an in person service.";
             }
             else
             {
-                ViewData["ServiceMessage"] = "Clinic service.";
+                ViewData["ServiceMessage"] = "This service can be served virtually.";
             }
 
             return Page();

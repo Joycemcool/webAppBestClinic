@@ -6,15 +6,12 @@ namespace WorldBestClinic.Pages
 {
     public class ConfirmationModel : PageModel
     {
-        public int StatusCode { get;set; }
+        //public int StatusCode { get;set; }
+        public string confirmationMsg;
 
-        public void OnGet()
+        public void OnGet(string responseContent)
         {
-            var statusCode = TempData["StatusCode"];
-            if (statusCode != null && int.TryParse(statusCode.ToString(), out int parsedStatusCode))
-            {
-                StatusCode =parsedStatusCode;
-            }
+            confirmationMsg = responseContent;
           
         }
     }

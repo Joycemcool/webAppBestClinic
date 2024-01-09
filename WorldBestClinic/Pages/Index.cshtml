@@ -8,7 +8,7 @@
 
 <div class="text-center mt-4">
     <h1 class="display-4">Welcome to the world best clinic</h1>
-    <p>Learn about <a href="https://regencyparkfamilypractice.ca/">Regencypark Family Practice</a>.</p>
+    @*<p>Learn about <a href="https://regencyparkfamilypractice.ca/">Regencypark Family Practice</a>.</p>*@
 </div>
 
 
@@ -42,7 +42,7 @@
                     <div  >
 
                          <img src="@imagePath" class="card-img-top" style="height:250px;" alt="ServicePhoto">
-                        <p class="card-text">Service @Model.Services[i-1].ServiceName </p>
+                        <p class="card-text">@Model.Services[i-1].ServiceName </p>
                         <p class="card-text">Price @Model.Services[i-1].Price </p>
                     </div>
                 </a>

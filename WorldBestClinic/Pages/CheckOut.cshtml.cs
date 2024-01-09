@@ -50,14 +50,16 @@ namespace WorldBestClinic.Pages
 
             if (response.IsSuccessStatusCode)
             {
-                var statusCode = (int)response.StatusCode;
+                //var statusCode = (int)response.StatusCode;
+                var responseContent = await response.Content.ReadAsStringAsync();
+
                 Response.Cookies.Delete("ShoppingCart");
 
                 //Store the statusCode in TempData
 
-                TempData["StatusCode"] = statusCode;
+                //TempData["StatusCode"] = statusCode;
 
-                return RedirectToPage("/Confirmation");
+                return RedirectToPage("/Confirmation", new { responseContent = responseContent});
             }
             else
             {

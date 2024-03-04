@@ -12,21 +12,27 @@ namespace WorldBestClinic.ViewModels
     {
 
         [Required]
+        [DisplayName("Name")]
         public string name { get; set; } = string.Empty;
 
         [Required]
+        [DisplayName("Address")]
         public string address { get; set; } = string.Empty;
 
         [Required]
+        [DisplayName("City")]
         public string city { get; set; } = string.Empty;
 
         [Required]
+        [DisplayName("Province")]
         public string province { get; set; } = string.Empty;
 
-        [Required] 
+        [Required]
+        [DisplayName("Postal Code")]
         public string postalCode { get; set; } = string.Empty;
 
         [Required]
+        [DisplayName("Country")]
         public string country { get; set; } = string.Empty;
 
         [DisplayName("Credit Card Number")]

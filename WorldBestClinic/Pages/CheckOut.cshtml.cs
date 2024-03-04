@@ -40,31 +40,32 @@ namespace WorldBestClinic.Pages
             Payment.cvv = Int32.Parse(cleanedCvvNumber);
 
             //Delete cookie
-            string jsonString = System.Text.Json.JsonSerializer.Serialize(Payment);
+            //string jsonString = System.Text.Json.JsonSerializer.Serialize(Payment);
 
-            string apiurl = "https://nscc-inet2005-purchase-api.azurewebsites.net/purchase";
+            //string apiurl = "https://nscc-inet2005-purchase-api.azurewebsites.net/purchase";
 
 
-            StringContent content =new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync(apiurl, content);
+            //StringContent content =new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json");
+            //HttpResponseMessage response = await client.PostAsync(apiurl, content);
 
-            if (response.IsSuccessStatusCode)
-            {
-                //var statusCode = (int)response.StatusCode;
-                var responseContent = await response.Content.ReadAsStringAsync();
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    //var statusCode = (int)response.StatusCode;
+            //    var responseContent = await response.Content.ReadAsStringAsync();
 
-                Response.Cookies.Delete("ShoppingCart");
+            Response.Cookies.Delete("ShoppingCart");
 
-                //Store the statusCode in TempData
+            //    //Store the statusCode in TempData
 
-                //TempData["StatusCode"] = statusCode;
+            //    //TempData["StatusCode"] = statusCode;
 
-                return RedirectToPage("/Confirmation", new { responseContent = responseContent});
-            }
-            else
-            {
-                return Page();
-            }
+            //return RedirectToPage("/Confirmation", new { responseContent = responseContent });
+            //}
+            //else
+            //{
+            //    return Page();
+            //}
+            return RedirectToPage("/Confirmation");
             
         }
     }
